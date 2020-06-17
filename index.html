@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Inventory</title>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="Inventory" content="Track your companies inventory!" />
+    <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+    <!--
+     See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+</head>
+
+<body>
+    <div id="root"></div>
+    <section>
+        <h1>Stock'Em!</h1>
+        <p>Ideas for the app:</p>
+        <ul>
+            <li>Landing page</li>
+            <li>Login</li>
+            <li>Create Account</li>
+            <li>Current inventory page</li>
+            <li>Current suppliers page</li>
+            <li>Current customers page</li>
+            <li>Order History page</li>
+            <li>Enter Customer PO Page</li>
+            <li>Enter Supplier PO Page</li>
+            <li>Add a Supplier page</li>
+            <li>Add a Customer page</li>
+        </ul>
+        <p>Database tables: supplier table, customer table, inventory table, orders table(shows all past orders), sku
+            table,</p>
+        <ul>
+            <li>Supplier Table</li>
+            <li>Customer Table</li>
+            <li>Current Inventory Table</li>
+            <li>Past Order Table</li>
+            <li>SKU Table</li>
+        </ul>
+        <p>Supplier table: id, supplier number, supplier company name, SKU, supplier contact name, supplier contact
+            number, supplier contact email </p>
+        <p>Customer table: id, customer number, customer company name, customer contact name, customer contact number,
+            customer contact email, customer contact billing address, customer contact ship-to address </p>
+        <p>Inventory table: id, SKU, QTY, Location in inventory </p>
+        <p>Orders table: history of all past orders. id, customer, SKU, QTY, PO number</p>
+    </section>
+    <br />
+    <h1>Landing Page</h1>
+    <section>
+        <!-- we have a landing page that explains the app and links to the page. no nav on this landing page -->
+        <p>This app is intendend to help users track their inventory, place orders for customers, and place orders to
+            suppliers to inflate inventory when it is low</p>
+        <p>Please use the link below to enter the inventory site for SomeCompany Inc.</p>
+    </section>
+    <button class="enter-button">Enter</button>
+    <br />
+    <section>
+        <h2>Login</h2>
+        <p>User Flows:</p>
+        <ul>
+            <li>User enters a valid username and password - home screen (inventory page)</li>
+            <li>User enters a valid username/password and invalid password/username - error message appears</li>
+        </ul>
+        <p>Please use username: UseThisUser and password: hello123! to login as a grader</p>
+        <br />
+        <form onSubmit={this.handleSubmit}>
+            <div>
+                <label htmlFor="login-username">Username: </label>
+                <input className="login-username" type="text" name='login-username' id='login-username' />
+            </div>
+            <div>
+                <label htmlFor="login-password">Password: </label>
+                <input className="login-password" type="password" name='login-password' id='login-password' />
+            </div>
+            <button type='submit'>Login</button>
+        </form>
+    </section>
+    <br />
+    <section>
+        <h2>Create your account today!</h2>
+        <p>User Flows:</p>
+        <ul>
+            <li>User enters a valid username and password - home screen (inventory page)</li>
+            <li>User enters a valid username and invalid password - error message appears</li>
+            <li>User enters an invalid username/one that is taken - error message appears</li>
+        </ul>
+        <form onSubmit={this.sendUserData}>
+            <div>
+                <label htmlFor="username">Username(must be between 4 and 12 characters): </label>
+                <br />
+                <input className="username" type="text" name='username' id='username' />
+            </div>
+            <div>
+                <label htmlFor="password">Password (must be between 7 and 15 characters and include at least one digit
+                    and one special character): </label>
+                <br />
+                <input className="password" type="password" name='password' id='password' />
+            </div>
+            <button type='submit'>Sign Up!</button>
+        </form>
+    </section>
+    <br />
+    <h1>Current Inventory Page</h1>
+    <div>
+        <nav>
+            <a>Current Suppliers</a>
+            <a>Current Customers</a>
+            <a>Current Inventory</a>
+            <a>Create a Customer PO</a>
+            <a>Create a Supplier PO</a>
+            <a>Add a Supplier</a>
+            <a>Add a Customer</a>
+            <a>Add an SKU</a>
+            <a>Orders History</a>
+        </nav>
+    </div>
+
+    <p>User Flows:</p>
+    <ul>
+        <li>User can view all current inventory</li>
+        <li>User can click on any one of the nav links - the specified page will populate</li>
+    </ul>
+    <section>
+        <p> table of current inventory </p>
+        <div class="table">
+            <table class="scrolling-wrapper">
+                <tr>
+                    <!-- will need to use javascript to create the table rows and columns -->
+                    <!-- Inventory table: id, SKU, QTY, Location in inventory -->
+                    <th>SKU</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                </tr>
+                <tr>
+                    <td>1234567</td>
+                    <td>1,000</td>
+                    <td>Relay</td>
+                    <td>M01</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <br />
+    <h1>Current Suppliers Page</h1>
+    <div>
+        <nav>
+            <a>Current Suppliers</a>
+            <a>Current Customers</a>
+            <a>Current Inventory</a>
+            <a>Create a Customer PO</a>
+            <a>Create a Supplier PO</a>
+            <a>Add a Supplier</a>
+            <a>Add a Customer</a>
+            <a>Add an SKU</a>
+            <a>Orders History</a>
+        </nav>
+    </div>
+
+    <p>User Flows:</p>
+    <ul>
+        <li>User can view all current inventory</li>
+        <li>User can click on any one of the nav links - the specified page will populate</li>
+    </ul>
+    <section>
+        <p> table of suppliers </p>
+        <div class="table">
+            <table class="scrolling-wrapper">
+                <tr>
+                    <!-- will need to use javascript to create the table rows and columns -->
+                    <!-- id, supplier number, supplier company name, SKU, supplier contact name, supplier contact number, supplier contact email -->
+                    <th>Company</th>
+                    <th>Supplier Contact Name</th>
+                    <th>Supplier Contact Number</th>
+                    <th>Supplier Contact Email</th>
+                    <th>Supplier Contact Address</th>
+                </tr>
+                <tr>
+                    <td>Some Company</td>
+                    <td>John Doe</td>
+                    <td>111-111-1111</td>
+                    <td>111222@gmail.com</td>
+                    <td>1234 Main St., Nowhere USA</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <br />
+    <h1>Current Customers Page</h1>
+    <div>
+        <nav>
+            <a>Current Suppliers</a>
+            <a>Current Customers</a>
+            <a>Current Inventory</a>
+            <a>Create a Customer PO</a>
+            <a>Create a Supplier PO</a>
+            <a>Add a Supplier</a>
+            <a>Add a Customer</a>
+            <a>Add an SKU</a>
+            <a>Orders History</a>
+        </nav>
+    </div>
+
+    <p>User Flows:</p>
+    <ul>
+        <li>User can view all current customers</li>
+        <li>User can click on any one of the nav links - the specified page will populate</li>
+    </ul>
+    <section>
+        <p> table of customers </p>
+        <div class="table">
+            <table class="scrolling-wrapper">
+                <tr>
+                    <!-- will need to use javascript to create the table rows and columns -->
+                    <!-- id, supplier number, supplier company name, SKU, supplier contact name, supplier contact number, supplier contact email -->
+                    <th>Company</th>
+                    <th>Customer Contact Name</th>
+                    <th>Customer Contact Number</th>
+                    <th>Customer Contact Email</th>
+                    <th>Customer Billing Address</th>
+                    <th>Customer Ship-to Address</th>
+                </tr>
+                <tr>
+                    <td>Some Customer Company</td>
+                    <td>John Doe</td>
+                    <td>111-111-1111</td>
+                    <td>111222@gmail.com</td>
+                    <td>1234 Main St., Nowhere USA</td>
+                    <td>1234 Main St., Nowhere USA</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <br />
+    <h1>Past Orders Page</h1>
+    <div>
+        <nav>
+            <a>Current Suppliers</a>
+            <a>Current Customers</a>
+            <a>Current Inventory</a>
+            <a>Create a Customer PO</a>
+            <a>Create a Supplier PO</a>
+            <a>Add a Supplier</a>
+            <a>Add a Customer</a>
+            <a>Add an SKU</a>
+            <a>Orders History</a>
+        </nav>
+    </div>
+
+    <p>User Flows:</p>
+    <ul>
+        <li>User can view all past customer POs</li>
+        <li>User can click on any one of the nav links - the specified page will populate</li>
+    </ul>
+    <section>
+        <p> table of past orders</p>
+        <div class="table">
+            <table class="scrolling-wrapper">
+                <tr>
+                    <!-- will need to use javascript to create the table rows and columns -->
+                    <!-- Inventory table: id, SKU, QTY, Location in inventory -->
+                    <th>Company</th>
+                    <th>SKU</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>PO</td>
+                    <th>Date Entered</th>
+                </tr>
+                <tr>
+                    <td>Some Company</td>
+                    <td>1234567</td>
+                    <td>1,000</td>
+                    <td>Relay</td>
+                    <td>PO1234</td>
+                    <td>1/1/2020</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <br />
+    <h1>Enter Customer PO's</h1>
+    <div>
+        <nav>
+            <a>Current Suppliers</a>
+            <a>Current Customers</a>
+            <a>Current Inventory</a>
+            <a>Create a Customer PO</a>
+            <a>Create a Supplier PO</a>
+            <a>Add a Supplier</a>
+            <a>Add a Customer</a>
+            <a>Add an SKU</a>
+            <a>Orders History</a>
+        </nav>
+    </div>
+
+    <p>User Flows:</p>
+    <ul>
+        <li>User can select customer from drop-down - will be populated by the database, so it should all be correct</li>
+        <li>User can select sku from drop-down - will be populated by the database, so it should all be correct</li>
+        <li>User can input valid quantity - on submit, a message will appear for happy case</li>
+        <li>User can input invalid quantity - on submit, a message will appear explaining the overdraft</li>
+        <li>User can input PO - this is a purely arbitrary PO system, but a check will ensure that it is not aleady in use, and perhaps a certain number of characters.</li>
+        <li>User can click on any one of the nav links - the specified page will populate</li>
+    </ul>
+    <section>
+        <p>There will need to be inventory validation here - if the qty entered for that SKU overpulls, then the form
+            should not be submitted. Maybe populate current inventory of that product when the SKU is selected? </p>
+        <p>*SELECTED SKU INVENTORY*</p>
+        <!-- Form to input orders for customers -->
+    </section>
+    <section class="form">
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        <label for="customer-options">Customer: </label>
+                    </td>
+                    <td>
+                        <select>
+                            <option name="customer-options">options go here</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sku">SKU:</label>
+                    </td>
+                    <td>
+                        <select>
+                            <option name="sku" value="drop down of skus">drop down of skus</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="quantity">Quantity:</label>
+                    </td>
+                    <td>
+                        <input name="quantity" type="number" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="purchase-order">Purchase Order:</label>
+                    </td>
+                    <td>
+                        <input name="purchase-order" />
+                    </td>
+                </tr>
+            </table>
+            <button>Submit Order</button>
+        </form>
+
+        <!-- var select = document.getElementById("selectNumber"); 
+        var options = ["1", "2", "3", "4", "5"]; 
+
+        for(var i = 0; i < options.length; i++) {
+            var opt = options[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+        }​ -->
+    </section>
+
+    <br />
+    <h1>Add an SKU to the database</h1>
+    <div>
+        <nav>
+            <a>Current Suppliers</a>
+            <a>Current Customers</a>
+            <a>Current Inventory</a>
+            <a>Create a Customer PO</a>
+            <a>Create a Supplier PO</a>
+            <a>Add a Supplier</a>
+            <a>Add a Customer</a>
+            <a>Add an SKU</a>
+            <a>Orders History</a>
+        </nav>
+    </div>
+    <p>User Flows:</p>
+    <ul>
+        <li>User can input an SKU - there can really be no validation for this, there is only happy case</li>
+        <li>User can input a description - there can really be no validation for this, there is only happy case</li>
+        <li>User can click on any one of the nav links - the specified page will populate</li>
+    </ul>
+    <section>
+        <p>validate submissions here </p>
+    </section>
+    <section class="form">
+        <!-- Form to input orders for customers -->
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        <label for="sku">SKU: </label>
+                    </td>
+                    <td>
+                        <input name="sku" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="description">Description: </label>
+                    </td>
+                    <td>
+                        <input name="description" />
+                    </td>
+                </tr>
+            </table>
+            <button>Submit SKU</button>
+        </form>
+
+        <!-- var select = document.getElementById("selectNumber"); 
+        var options = ["1", "2", "3", "4", "5"]; 
+
+        for(var i = 0; i < options.length; i++) {
+            var opt = options[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+        }​ -->
+    </section>
+    <br />
+    <h1>Enter Supplier PO's</h1>
+    <div>
+        <nav>
+            <a>Current Suppliers</a>
+            <a>Current Customers</a>
+            <a>Current Inventory</a>
+            <a>Create a Customer PO</a>
+            <a>Create a Supplier PO</a>
+            <a>Add a Supplier</a>
+            <a>Add a Customer</a>
+            <a>Add an SKU</a>
+            <a>Orders History</a>
+        </nav>
+    </div>
+    <p>User Flows:</p>
+    <ul>
+        <li>User can select supplier from drop-down - will be populated by the database, so it should all be correct</li>
+        <li>User can select sku from drop-down - will be populated by the database, so it should all be correct</li>
+        <li>User can input valid quantity - on submit, a message will appear for happy case</li>
+        <li>User can input invalid quantity - on submit, a message will appear explaining the overdraft</li>
+        <li>User can input PO - this is a purely arbitrary PO system, but a check will ensure that it is not aleady in use, and perhaps a certain number of characters.</li>
+        <li>User can click on any one of the nav links - the specified page will populate</li>
+    </ul>
+    <section>
+        <p>This is a representative form for submitting supplier PO's and receiving in inventory.</p>
+    </section>
+    <section class="form">
+        <!-- Form to input orders for customers -->
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        <label for="supplier-options">Suppliers: </label>
+                    </td>
+                    <td>
+                        <select>
+                            <option name="supplier-options">options go here</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="sku">SKU: </label>
+                    </td>
+                    <td>
+                        <select>
+                            <option name="sku">drop down of skus</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="quantity">Quantity: </label>
+                    </td>
+                    <td>
+                        <input name="quantity" type="number" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="purchase-order">Purchase Order: </label>
+                    </td>
+                    <td>
+                        <input name="purchase-order" />
+                    </td>
+                </tr>
+            </table>
+            <button>Submit</button>
+        </form>
+
+        <!-- var select = document.getElementById("selectNumber"); 
+        var options = ["1", "2", "3", "4", "5"]; 
+
+        for(var i = 0; i < options.length; i++) {
+            var opt = options[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+        }​ -->
+    </section>
+    <br />
+    <h1>Add a supplier to the database</h1>
+    <div>
+        <nav>
+            <a>Current Suppliers</a>
+            <a>Current Customers</a>
+            <a>Current Inventory</a>
+            <a>Create a Customer PO</a>
+            <a>Create a Supplier PO</a>
+            <a>Add a Supplier</a>
+            <a>Add a Customer</a>
+            <a>Add an SKU</a>
+            <a>Orders History</a>
+        </nav>
+    </div>
+    <p>User Flows:</p>
+    <ul>
+        <li>User can input valid data - a message will appear upon submission</li>
+        <li>User can click on any one of the nav links - the specified page will populate</li>
+    </ul>
+    <section>
+        <p>validate submissions here </p>
+    </section>
+    <section class="form">
+        <!-- Form to input orders for customers -->
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        <label for="supplier">Supplier name: </label>
+                    </td>
+                    <td>
+                        <input name="supplier" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="supplier-contact-name">Supplier contact name: </label>
+                    </td>
+                    <td>
+                        <input name="supplier-contact-name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="supplier-contact-number">Supplier contact number: </label>
+                    </td>
+                    <td>
+                        <input name="supplier-contact-number" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="supplier-contact-email">Supplier contact email: </label>
+                    </td>
+                    <td>
+                        <input name="supplier-contact-email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="supplier-contact-address">Supplier contact address: </label>
+                    </td>
+                    <td>
+                        <input name="supplier-contact-address" />
+                    </td>
+                </tr>
+            </table>
+            <button>Submit</button>
+        </form>
+
+        <!-- var select = document.getElementById("selectNumber"); 
+        var options = ["1", "2", "3", "4", "5"]; 
+
+        for(var i = 0; i < options.length; i++) {
+            var opt = options[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+        }​ -->
+    </section>
+    <br />
+    <h1>Add a customer to the database</h1>
+    <div>
+        <nav>
+            <a>Current Suppliers</a>
+            <a>Current Customers</a>
+            <a>Current Inventory</a>
+            <a>Create a Customer PO</a>
+            <a>Create a Supplier PO</a>
+            <a>Add a Supplier</a>
+            <a>Add a Customer</a>
+            <a>Add an SKU</a>
+            <a>Orders History</a>
+        </nav>
+    </div>
+
+    <p>User Flows:</p>
+    <ul>
+        <li>User can input data - a message will appear upon submission.</li>
+        <li>User can click on any one of the nav links - the specified page will populate</li>
+    </ul>
+    <section>
+        <p>validate submissions here </p>
+    </section>
+    <section class="form">
+        <!-- Form to input orders for customers -->
+        <form>
+            <table>
+                <tr>
+                    <td>
+                        <label for="customer">Customer name: </label>
+                    </td>
+                    <td>
+                        <input name="customer" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="customer-contact-name">Customer contact name: </label>
+                    </td>
+                    <td>
+                        <input name="customer-contact-name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="customer-contact-number">Customer contact number: </label>
+                    </td>
+                    <td>
+                        <input name="customer-contact-number" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="customer-contact-email">Customer contact email: </label>
+                    </td>
+                    <td>
+                        <input name="customer-contact-email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="customer-contact-bill-address">Customer billing address: </label>
+                    </td>
+                    <td>
+                        <input name="customer-contact-bill-address" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="customer-contact-ship-address">Customer ship-to address: </label>
+                    </td>
+                    <td>
+                        <input name="customer-contact-ship-address" />
+                    </td>
+                </tr>
+            </table>
+            <button>Submit</button>
+        </form>
+
+        <!-- var select = document.getElementById("selectNumber"); 
+        var options = ["1", "2", "3", "4", "5"]; 
+
+        for(var i = 0; i < options.length; i++) {
+            var opt = options[i];
+            var el = document.createElement("option");
+            el.textContent = opt;
+            el.value = opt;
+            select.appendChild(el);
+        }​ -->
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inventory</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="Maintain your inventory"
+      content="Create a character and fight!"
+    />
+  </head>
+  <body>
+    <div id="root">
+        <h1>Enter Customer PO's</h1>
+        <section>
+            <p>There will need to be inventory validation here - if the qty entered for that SKU overpulls, then the form should not be submitted. Maybe populate current inventory of that product when the SKU is selected? </p>
+            <p>*SELECTED SKU INVENTORY*</p>
+        </section>
+        <section>
+            <!-- Form to input orders for customers -->
+            <form>
+                <label for="customer-options">Customers</label>
+                <options name="customer-options">options go here</options>
+                <label for="sku">SKU</label>
+                <options name="sku">drop down of skus</options>
+                <label for="quantity">Quantity</label>
+                <input name="quantity" type="number">quantity</input>
+                <label for="purchase-order">Purchase Order</label>
+                <input name="purchase-order"/>
+            </form>
+
+            <!-- var select = document.getElementById("selectNumber"); 
+            var options = ["1", "2", "3", "4", "5"]; 
+
+            for(var i = 0; i < options.length; i++) {
+                var opt = options[i];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                select.appendChild(el);
+            }​ -->
+        </section>
+    </div>
+  </body>
+</html>

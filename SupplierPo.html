@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Inventory</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="Maintain your inventory"
+      content="Create a character and fight!"
+    />
+  </head>
+  <body>
+    <div id="root">
+        <h1>Enter Supplier PO's</h1>
+        <section>
+            <p>This is a representative form for submitting supplier PO's and receiving in inventory.</p>
+        </section>
+        <section>
+            <!-- Form to input orders for customers -->
+            <form>
+                <label for="supplier-options">suppliers</label>
+                <select>
+                    <option name="supplier-options">options go here</option>    
+                </select>
+                <label for="sku">SKU</label>
+                <select>
+                    <option name="sku">drop down of skus</option>    
+                </select>
+                <label for="quantity">Quantity</label>
+                <input name="quantity" type="number">quantity</input>
+                <label for="purchase-order">Purchase Order</label>
+                <input name="purchase-order"/>
+            </form>
+
+            <!-- var select = document.getElementById("selectNumber"); 
+            var options = ["1", "2", "3", "4", "5"]; 
+
+            for(var i = 0; i < options.length; i++) {
+                var opt = options[i];
+                var el = document.createElement("option");
+                el.textContent = opt;
+                el.value = opt;
+                select.appendChild(el);
+            }​ -->
+        </section>
+    </div>
+  </body>
+</html>
